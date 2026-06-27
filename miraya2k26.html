@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MIRAYA 2K26 — CVAS Bikaner Freshers' Party</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-pale: #F5E9C8;
+    --deep: #0D0A1A;
+    --deep-2: #160E2A;
+    --deep-3: #1E1335;
+    --violet: #6B3FA0;
+    --violet-light: #9B6DD6;
+    --rose: #D4547A;
+    --rose-light: #F08BA8;
+    --cream: #F9F3E8;
+    --text-light: rgba(255,255,255,0.9);
+    --text-muted: rgba(255,255,255,0.5);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--deep);
+    color: var(--text-light);
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* ── STARS BACKGROUND ── */
+  .stars {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(107,63,160,0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(201,168,76,0.08) 0%, transparent 40%),
+      radial-gradient(ellipse at 60% 80%, rgba(212,84,122,0.10) 0%, transparent 40%),
+      var(--deep);
+  }
+  .stars::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.8) 0%, transparent 100%),
+      radial-gradient(1px 1px at 25% 60%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 40% 30%, rgba(255,255,255,0.9) 0%, transparent 100%),
+      radial-gradient(1px 1px at 55% 80%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 70% 20%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 85% 55%, rgba(255,255,255,0.8) 0%, transparent 100%),
+      radial-gradient(1px 1px at 15% 85%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 10%, rgba(255,255,255,0.9) 0%, transparent 100%),
+      radial-gradient(1px 1px at 35% 95%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 65% 45%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 48% 12%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 78% 75%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 5% 40%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 93% 88%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 20% 70%, rgba(255,255,255,0.8) 0%, transparent 100%);
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.2rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(13,10,26,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+  .nav-logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 1rem; font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.85rem; font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative; z-index: 1;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+  }
+  .hero-badge {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.4);
+    padding: 0.4rem 1.2rem;
+    border-radius: 2rem;
+    margin-bottom: 2rem;
+    animation: fadeSlideUp 0.8s ease both;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 10vw, 8rem);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+    animation: fadeSlideUp 0.8s ease 0.1s both;
+  }
+  .hero-title .line-gold {
+    background: linear-gradient(135deg, var(--gold-light), var(--gold), #A0722A);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+  }
+  .hero-title .line-white { display: block; color: white; }
+  .hero-sub {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    color: var(--rose-light);
+    margin: 1.2rem 0 0.5rem;
+    animation: fadeSlideUp 0.8s ease 0.2s both;
+  }
+  .hero-college {
+    font-size: 0.85rem; letter-spacing: 0.12em;
+    color: var(--text-muted); text-transform: uppercase;
+    animation: fadeSlideUp 0.8s ease 0.3s both;
+    margin-bottom: 3rem;
+  }
+  .hero-date-band {
+    display: flex; gap: 2.5rem; align-items: center; justify-content: center;
+    margin-bottom: 3rem;
+    animation: fadeSlideUp 0.8s ease 0.4s both;
+    flex-wrap: wrap;
+  }
+  .date-item { text-align: center; }
+  .date-label {
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--text-muted); display: block; margin-bottom: 0.2rem;
+  }
+  .date-value {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--gold-light);
+  }
+  .date-sep {
+    width: 1px; height: 2.5rem;
+    background: rgba(201,168,76,0.3);
+  }
+  .cta-row {
+    display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+    animation: fadeSlideUp 0.8s ease 0.5s both;
+  }
+  .btn-primary {
+    display: inline-block; text-decoration: none;
+    background: linear-gradient(135deg, var(--gold), #A0722A);
+    color: #1A0E00; font-weight: 600; font-size: 0.9rem;
+    padding: 0.85rem 2rem; border-radius: 2rem;
+    letter-spacing: 0.06em; transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 4px 20px rgba(201,168,76,0.25);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.35); }
+  .btn-ghost {
+    display: inline-block; text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.25);
+    color: white; font-size: 0.9rem;
+    padding: 0.85rem 2rem; border-radius: 2rem;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--gold); background: rgba(201,168,76,0.08); }
+
+  .scroll-hint {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    color: var(--text-muted); font-size: 0.7rem; letter-spacing: 0.15em;
+    text-transform: uppercase;
+    animation: fadeSlideUp 0.8s ease 0.8s both;
+  }
+  .scroll-line {
+    width: 1px; height: 2.5rem;
+    background: linear-gradient(to bottom, rgba(201,168,76,0.6), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  /* ── SECTION BASE ── */
+  section {
+    position: relative; z-index: 1;
+    padding: 6rem 2rem;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .section-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); display: block; margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700; line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+  .section-divider {
+    width: 3rem; height: 2px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    margin-bottom: 2rem;
+  }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+    align-items: center;
+  }
+  .about-text p {
+    color: rgba(255,255,255,0.7); line-height: 1.8;
+    margin-bottom: 1.2rem;
+  }
+  .about-highlight {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.4rem; color: var(--gold-light);
+    line-height: 1.5; border-left: 2px solid var(--gold);
+    padding-left: 1.5rem; margin: 2rem 0;
+  }
+  .about-visual {
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .about-ring {
+    width: 280px; height: 280px; border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.3);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .about-ring::before {
+    content: '';
+    position: absolute; inset: 12px; border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.15);
+  }
+  .about-ring-inner {
+    width: 180px; height: 180px; border-radius: 50%;
+    background: linear-gradient(135deg, rgba(107,63,160,0.4), rgba(212,84,122,0.3));
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    border: 1px solid rgba(201,168,76,0.25);
+  }
+  .about-ring-year {
+    font-family: 'Space Mono', monospace;
+    font-size: 2.5rem; font-weight: 700; color: var(--gold);
+    line-height: 1;
+  }
+  .about-ring-label {
+    font-size: 0.65rem; letter-spacing: 0.2em;
+    color: var(--text-muted); text-transform: uppercase;
+    margin-top: 0.3rem;
+  }
+
+  /* ── PROGRAM GRID ── */
+  .program-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .program-card {
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 1.75rem;
+    background: rgba(255,255,255,0.03);
+    position: relative; overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .program-card:hover { border-color: rgba(201,168,76,0.3); transform: translateY(-3px); }
+  .program-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    opacity: 0; transition: opacity 0.2s;
+  }
+  .program-card:hover::before { opacity: 1; }
+  .program-time {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 0.15em;
+    color: var(--gold); margin-bottom: 0.75rem;
+    display: block;
+  }
+  .program-name {
+    font-size: 1.1rem; font-weight: 600;
+    color: white; margin-bottom: 0.4rem;
+  }
+  .program-desc {
+    font-size: 0.85rem; color: rgba(255,255,255,0.5);
+    line-height: 1.6;
+  }
+  .program-tag {
+    display: inline-block; margin-top: 1rem;
+    font-size: 0.65rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.7rem; border-radius: 1rem;
+  }
+  .tag-perf { background: rgba(107,63,160,0.25); color: var(--violet-light); }
+  .tag-fun { background: rgba(212,84,122,0.2); color: var(--rose-light); }
+  .tag-award { background: rgba(201,168,76,0.15); color: var(--gold-light); }
+  .tag-food { background: rgba(29,158,117,0.2); color: #5DCAA5; }
+
+  /* ── COUNTDOWN ── */
+  .countdown-section {
+    text-align: center; padding: 5rem 2rem;
+    background: rgba(255,255,255,0.02);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .countdown-wrap {
+    display: flex; gap: 2rem; justify-content: center;
+    flex-wrap: wrap; margin-top: 3rem;
+  }
+  .countdown-box {
+    min-width: 90px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 12px; padding: 1.5rem 1rem;
+    text-align: center;
+  }
+  .countdown-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 2.8rem; font-weight: 700;
+    color: var(--gold-light);
+    display: block; line-height: 1;
+    min-width: 3ch;
+  }
+  .countdown-label {
+    font-size: 0.65rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--text-muted);
+    margin-top: 0.5rem; display: block;
+  }
+
+  /* ── HOSTS / TEAM ── */
+  .hosts-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .host-card {
+    text-align: center; padding: 2rem 1rem;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    background: rgba(255,255,255,0.02);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .host-card:hover { border-color: rgba(201,168,76,0.25); transform: translateY(-2px); }
+  .host-avatar {
+    width: 64px; height: 64px; border-radius: 50%;
+    margin: 0 auto 1rem;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 1.2rem;
+    color: white; font-family: 'Space Mono', monospace;
+  }
+  .av-violet { background: linear-gradient(135deg, #6B3FA0, #9B6DD6); }
+  .av-rose   { background: linear-gradient(135deg, #D4547A, #F08BA8); }
+  .av-gold   { background: linear-gradient(135deg, #8A6020, #C9A84C); }
+  .av-teal   { background: linear-gradient(135deg, #0F6E56, #1D9E75); }
+  .av-blue   { background: linear-gradient(135deg, #185FA5, #378ADD); }
+  .av-coral  { background: linear-gradient(135deg, #993C1D, #D85A30); }
+  .host-name { font-weight: 600; font-size: 0.95rem; color: white; margin-bottom: 0.2rem; }
+  .host-role { font-size: 0.75rem; color: var(--gold); letter-spacing: 0.05em; }
+
+  /* ── GALLERY / MOOD ── */
+  .mood-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 1rem; margin-top: 3rem;
+  }
+  .mood-cell {
+    border-radius: 12px; overflow: hidden;
+    min-height: 140px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.35);
+  }
+  .mood-cell:first-child { grid-row: span 2; min-height: 300px; }
+  .mood-c1 { background: linear-gradient(135deg, rgba(107,63,160,0.6), rgba(30,19,53,1)); }
+  .mood-c2 { background: linear-gradient(135deg, rgba(201,168,76,0.3), rgba(30,19,53,1)); }
+  .mood-c3 { background: linear-gradient(135deg, rgba(212,84,122,0.4), rgba(30,19,53,1)); }
+  .mood-c4 { background: linear-gradient(135deg, rgba(29,158,117,0.3), rgba(30,19,53,1)); }
+  .mood-c5 { background: linear-gradient(135deg, rgba(55,138,221,0.3), rgba(30,19,53,1)); }
+
+  /* ── VENUE ── */
+  .venue-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+    align-items: start; margin-top: 2rem;
+  }
+  .venue-info dl { display: grid; gap: 1rem; margin-top: 1.5rem; }
+  .venue-info dt {
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .venue-info dd { color: white; font-weight: 500; font-size: 0.95rem; margin: 0 0 0.75rem; }
+  .venue-map {
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 16px; overflow: hidden;
+    aspect-ratio: 4/3;
+    background: rgba(255,255,255,0.02);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    color: var(--text-muted); gap: 0.75rem;
+    font-size: 0.8rem;
+  }
+  .venue-map-icon {
+    width: 40px; height: 40px;
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    position: relative; z-index: 1;
+    text-align: center; padding: 4rem 2rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 700;
+    background: linear-gradient(135deg, var(--gold-light), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+  }
+  .footer-sub { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; }
+  .footer-credits {
+    font-size: 0.75rem; color: rgba(255,255,255,0.25);
+    letter-spacing: 0.05em;
+  }
+  .footer-credits strong { color: rgba(255,255,255,0.4); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .orbit-dot {
+    position: absolute;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--gold); top: 50%; left: 50%;
+    transform-origin: 0 0;
+    animation: orbit-anim 8s linear infinite;
+  }
+  @keyframes orbit-anim {
+    from { transform: rotate(0deg) translateX(148px) rotate(0deg); }
+    to { transform: rotate(360deg) translateX(148px) rotate(-360deg); }
+  }
+  .orbit-dot-2 { animation-delay: -3s; background: var(--rose-light); }
+  .orbit-dot-3 { animation-delay: -6s; background: var(--violet-light); width: 4px; height: 4px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .venue-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .mood-grid { grid-template-columns: 1fr 1fr; }
+    .mood-cell:first-child { grid-column: span 2; grid-row: span 1; min-height: 160px; }
+    nav .nav-links { display: none; }
+    .date-sep { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stars" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">MIRAYA 2K26</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#program">Program</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#venue">Venue</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">✦ CVAS Bikaner Presents ✦</div>
+  <h1 class="hero-title">
+    <span class="line-gold">MIRAYA</span>
+    <span class="line-white">2K26</span>
+  </h1>
+  <p class="hero-sub">A Night to Remember — Freshers' Party 2026</p>
+  <p class="hero-college">College of Veterinary &amp; Animal Science, Bikaner · RAJUVAS</p>
+
+  <div class="hero-date-band">
+    <div class="date-item">
+      <span class="date-label">Date</span>
+      <span class="date-value">July 3, 2026</span>
+    </div>
+    <div class="date-sep"></div>
+    <div class="date-item">
+      <span class="date-label">Day</span>
+      <span class="date-value">Thursday</span>
+    </div>
+    <div class="date-sep"></div>
+    <div class="date-item">
+      <span class="date-label">Venue</span>
+      <span class="date-value">CVAS Campus</span>
+    </div>
+    <div class="date-sep"></div>
+    <div class="date-item">
+      <span class="date-label">Dress Code</span>
+      <span class="date-value">Ethnic / Formal</span>
+    </div>
+  </div>
+
+  <div class="cta-row">
+    <a href="#program" class="btn-primary">View Program</a>
+    <a href="#about" class="btn-ghost">Know More</a>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-text">
+      <span class="section-eyebrow">About the Night</span>
+      <h2 class="section-title">Welcome to the Family</h2>
+      <div class="section-divider"></div>
+      <p>
+        MIRAYA 2K26 is more than a party — it's a tradition. Every year, the seniors of CVAS Bikaner roll out the red carpet for our newest members, the Batch of 2026, with an evening of warmth, culture, and celebration.
+      </p>
+      <p>
+        Expect dazzling performances, roaring laughter, heartfelt felicitations, and a night that will stay in your heart long after the music fades.
+      </p>
+      <p class="about-highlight">
+        "From strangers to a family — the journey begins tonight."
+      </p>
+    </div>
+    <div class="about-visual">
+      <div class="about-ring">
+        <div class="orbit-dot"></div>
+        <div class="orbit-dot orbit-dot-2"></div>
+        <div class="orbit-dot orbit-dot-3"></div>
+        <div class="about-ring-inner">
+          <span class="about-ring-year">2K26</span>
+          <span class="about-ring-label">Batch</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COUNTDOWN -->
+<div class="countdown-section">
+  <span class="section-eyebrow" style="display:block; margin-bottom:1rem;">Event Countdown</span>
+  <h2 class="section-title" style="font-size:clamp(1.5rem,4vw,2.5rem);">The Wait Is Almost Over</h2>
+  <div class="countdown-wrap">
+    <div class="countdown-box">
+      <span class="countdown-num" id="cd-days">--</span>
+      <span class="countdown-label">Days</span>
+    </div>
+    <div class="countdown-box">
+      <span class="countdown-num" id="cd-hours">--</span>
+      <span class="countdown-label">Hours</span>
+    </div>
+    <div class="countdown-box">
+      <span class="countdown-num" id="cd-mins">--</span>
+      <span class="countdown-label">Minutes</span>
+    </div>
+    <div class="countdown-box">
+      <span class="countdown-num" id="cd-secs">--</span>
+      <span class="countdown-label">Seconds</span>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRAM -->
+<section id="program">
+  <span class="section-eyebrow">Evening Schedule</span>
+  <h2 class="section-title">Program at a Glance</h2>
+  <div class="section-divider"></div>
+  <div class="program-grid">
+    <div class="program-card">
+      <span class="program-time">06:00 PM</span>
+      <div class="program-name">Arrival &amp; Registration</div>
+      <div class="program-desc">Guests arrive, mingle, and settle in. Red carpet photo opportunity.</div>
+      <span class="program-tag tag-fun">Welcome</span>
+    </div>
+    <div class="program-card">
+      <span class="program-time">06:30 PM</span>
+      <div class="program-name">Lighting of the Lamp</div>
+      <div class="program-desc">Inauguration ceremony with faculty dignitaries and chief guests.</div>
+      <span class="program-tag tag-award">Ceremony</span>
+    </div>
+    <div class="program-card">
+      <span class="program-time">07:00 PM</span>
+      <div class="program-name">Welcome Speech</div>
+      <div class="program-desc">A warm address from student representatives to the freshers.</div>
+      <span class="program-tag tag-award">Felicitation</span>
+    </div>
+    <div class="program-card">
+      <span class="program-time">07:20 PM</span>
+      <div class="program-name">Classical Dance Performance</div>
+      <div class="program-desc">Senior students present a mesmerizing classical dance on stage.</div>
+      <span class="program-tag tag-perf">Performance</span>
+    </div>
+    <div class="program-card">
+      <span class="program-time">07:45 PM</span>
+      <div class="program-name">Solo Singing Round</div>
+      <div class="program-desc">Melodious voices fill the air — a journey through Bollywood's finest.</div>
+      <span class="program-tag tag-perf">Music</span>
+    </div>
+    <div class="program-card">
+      <span class="program-time">08:10 PM</span>
+      <div class="program-name">Mr. &amp; Miss MIRAYA 2K26</div>
+      <div class="program-desc">The crowning moment — freshers take the ramp and the floor in a talent showcase.</div>
+      <span class="program-tag tag-fun">Contest</span>
+    </div>
+    <div class="program-card">
+      <span class="program-time">08:50 PM</span>
+      <div class="program-name">Skit &amp; Stand-up Comedy</div>
+      <div class="program-desc">Hilarious skits by seniors — side-splitting laughter guaranteed!</div>
+      <span class="program-tag tag-fun">Entertainment</span>
+    </div>
+    <div class="program-card">
+      <span class="program-time">09:20 PM</span>
+      <div class="program-name">Award &amp; Felicitation Ceremony</div>
+      <div class="program-desc">Prizes, certificates, and special recognition for standout freshers.</div>
+      <span class="program-tag tag-award">Awards</span>
+    </div>
+    <div class="program-card">
+      <span class="program-time">09:45 PM</span>
+      <div class="program-name">Group Dance &amp; DJ Night</div>
+      <div class="program-desc">The grand finale — group performance, open floor, and beats until late.</div>
+      <span class="program-tag tag-perf">Dance Night</span>
+    </div>
+    <div class="program-card">
+      <span class="program-time">10:30 PM</span>
+      <div class="program-name">Dinner &amp; Fellowship</div>
+      <div class="program-desc">A delicious spread while seniors and freshers share stories and build bonds.</div>
+      <span class="program-tag tag-food">Dinner</span>
+    </div>
+  </div>
+</section>
+
+<!-- MOOD / GALLERY PLACEHOLDER -->
+<section>
+  <span class="section-eyebrow">The Vibe</span>
+  <h2 class="section-title">Moments from MIRAYA</h2>
+  <div class="section-divider"></div>
+  <div class="mood-grid">
+    <div class="mood-cell mood-c1">✦ Main Stage</div>
+    <div class="mood-cell mood-c2">Dance</div>
+    <div class="mood-cell mood-c3">Crown Night</div>
+    <div class="mood-cell mood-c4">Fest Vibes</div>
+    <div class="mood-cell mood-c5">After Party</div>
+  </div>
+  <p style="text-align:center; color:rgba(255,255,255,0.3); font-size:0.8rem; margin-top:1rem;">
+    Photos will appear here after the event · July 3, 2026
+  </p>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <span class="section-eyebrow">Organizing Committee</span>
+  <h2 class="section-title">The Team Behind MIRAYA</h2>
+  <div class="section-divider"></div>
+  <div class="hosts-grid">
+    <div class="host-card">
+      <div class="host-avatar av-violet">VM</div>
+      <div class="host-name">Vratik Maan</div>
+      <div class="host-role">Event Head</div>
+    </div>
+    <div class="host-card">
+      <div class="host-avatar av-rose">AK</div>
+      <div class="host-name">Anchor Lead</div>
+      <div class="host-role">Master of Ceremonies</div>
+    </div>
+    <div class="host-card">
+      <div class="host-avatar av-gold">RS</div>
+      <div class="host-name">Decor Team</div>
+      <div class="host-role">Ambience & Lights</div>
+    </div>
+    <div class="host-card">
+      <div class="host-avatar av-teal">PS</div>
+      <div class="host-name">Sponsorship Lead</div>
+      <div class="host-role">Logistics & Finance</div>
+    </div>
+    <div class="host-card">
+      <div class="host-avatar av-blue">KM</div>
+      <div class="host-name">Cultural Lead</div>
+      <div class="host-role">Performances & Shows</div>
+    </div>
+    <div class="host-card">
+      <div class="host-avatar av-coral">NJ</div>
+      <div class="host-name">Food Committee</div>
+      <div class="host-role">Catering & Hospitality</div>
+    </div>
+  </div>
+</section>
+
+<!-- VENUE -->
+<section id="venue">
+  <span class="section-eyebrow">Where It Happens</span>
+  <h2 class="section-title">Venue &amp; Details</h2>
+  <div class="section-divider"></div>
+  <div class="venue-grid">
+    <div class="venue-info">
+      <dl>
+        <dt>Full Name</dt>
+        <dd>College of Veterinary &amp; Animal Science</dd>
+        <dt>Affiliation</dt>
+        <dd>RAJUVAS, Bikaner</dd>
+        <dt>Location</dt>
+        <dd>Bikaner, Rajasthan, India</dd>
+        <dt>Date</dt>
+        <dd>Thursday, July 3, 2026</dd>
+        <dt>Timing</dt>
+        <dd>6:00 PM onwards</dd>
+        <dt>Dress Code</dt>
+        <dd>Ethnic Wear / Smart Formal</dd>
+        <dt>Entry</dt>
+        <dd>By Invitation — CVAS Students & Faculty</dd>
+      </dl>
+    </div>
+    <div class="venue-map">
+      <div class="venue-map-icon">📍</div>
+      <span>CVAS Bikaner, Rajasthan</span>
+      <span style="font-size:0.7rem; opacity:0.5;">Map will be available closer to the event</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">MIRAYA 2K26</div>
+  <div class="footer-sub">Freshers' Party · CVAS Bikaner · July 3, 2026</div>
+  <div class="footer-credits">
+    Organized with ❤️ by the <strong>Student Council, CVAS Bikaner</strong> · RAJUVAS<br>
+    <span style="margin-top:0.5rem; display:block;">Designed by <strong>Vratik Maan</strong></span>
+  </div>
+</footer>
+
+<script>
+  // Countdown to July 3, 2026 6:00 PM IST
+  const eventDate = new Date('2026-07-03T18:00:00+05:30');
+  function updateCountdown() {
+    const now = new Date();
+    const diff = eventDate - now;
+    if (diff <= 0) {
+      document.getElementById('cd-days').textContent = '00';
+      document.getElementById('cd-hours').textContent = '00';
+      document.getElementById('cd-mins').textContent = '00';
+      document.getElementById('cd-secs').textContent = '🎉';
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cd-days').textContent = String(d).padStart(2,'0');
+    document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-mins').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-secs').textContent = String(s).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
+</body>
+</html>
